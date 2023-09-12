@@ -10,7 +10,7 @@
 
 <body class="min-vh-100 d-flex align-items-center">
     <div class="card w-50 m-auto p-3">
-        <h3 class="text-center">Data Guru</h3>
+        <h3 class="text-center">Data</h3>
         <table class="table table-striped">
   <thead>
       <th scope="col">No</th>
@@ -24,21 +24,21 @@
   </thead>
 <tbody class="table-group-divider">
     <?php
-    $sql = "select * from guru INNER JOIN mapel ON guru.id_mapel = mapel.id INNER JOIN kelas ON kelas.id_guru_walikelas = guru.id ";
+    $sql = "select * from siswa INNER JOIN kelas ON siswa.id_kelas = kelas.id INNER JOIN sekolah ON kelas.id_sekolah = sekolah.id ";
     $result = mysqli_query($conn, $sql);
     $no = 1;
     foreach ($result as $row) :
         ?>
             <tr>
                 <td><?= $no++; ?></td>
-                <td><?= $row['nama_guru'];?></td>
-                <td><?= $row['nik'];?></td>
+                <td><?= $row['nama_siswa'];?></td>
+                <td><?= $row['nisn'];?></td>
                 <td><?= $row['gender'];?></td>
                 <td><?= $row['jurusan_kelas'].' '.$row['tingkat_kelas']; ?></td>
-                <td><?= $row['guru_mapel']; ?></td>
+                <td><?= $row['id_siswa']; ?></td>
                 <td class="text-center">
-                <a href="<?= 'detail.php?id='.$row['id']; ?>" class="btn btn-sm btn-primary">Detail</a>
-                <button onclick="<?= 'hapus('.$row['id'].')'; ?>"class="btn btn-sm btn-danger">Delete</button>
+                <a href="<?= 'detail.php?id='.$row['id_siswa']; ?>" class="btn btn-sm btn-primary">Detail</a>
+                <button onclick="<?= 'hapus('.$row['id_siswa'].')'; ?>"class="btn btn-sm btn-danger">Delete</button>
                 </td>
             </tr>
             <?php endforeach; ?>
